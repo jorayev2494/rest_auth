@@ -13,10 +13,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(User::class, "admin")->create()->each(function ($admin) {
-            $admin->books()->saveMany(factory(Book::class, 5)->make());
-        });
-
+        factory(User::class, "admin")->create();
         factory(User::class, 10)->create();
     }
 }
