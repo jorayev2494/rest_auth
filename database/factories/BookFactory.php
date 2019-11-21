@@ -13,7 +13,8 @@ $factory->define(Book::class, function (Faker $faker) {
         "title"         => $faker->title,
         "count_page"    => $faker->numberBetween(50, 10),
         "annotation"    => $faker->text(150),
-        "picture"       => $faker->imageUrl(50, 50, "people"),
-        // "author_id"     => rand(1, Author::all()->count()),
+        "picture"       => base64_encode($faker->imageUrl(50, 50, "people")),   // base64_encode()
+        // "picture"       => $faker->imageUrl(50, 50, "people"),
+        // "author_id"     => rand(1, Author::all()->count()), 
     ];
 });

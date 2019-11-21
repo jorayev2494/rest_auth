@@ -19,7 +19,7 @@ class AuthorRepository extends Repositories implements IRepository
 
     public function findById(int $id)
     {
-        $this->getModelClone()->find($id);
+        return $this->getModelClone()->find($id);
     }
 
     public function getFindOrFail($id)

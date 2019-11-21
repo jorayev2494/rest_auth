@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Validator;
 class BookApiController extends Controller
 {
 
-    // private $user;
     private $book_r;
 
     public function __construct(BookRepository $bookRepository)
@@ -24,7 +23,7 @@ class BookApiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = $this->authUser();
         return response()->json(["my_books" => $user->books], 200);
@@ -48,7 +47,7 @@ class BookApiController extends Controller
             "title"             =>  "required|string",
             "count_page"        =>  "required|numeric|min:1|max:150",
             "annotation"        =>  "required|string",
-            // "picture"        =>  "https://lorempixel.com/50/50/people/?46307",
+            "picture"           =>  "required|string",
             "author_name"       =>  "required|string|min:2",
             "author_lastname"   =>  "required|string|min:2",
         ]);
@@ -69,7 +68,8 @@ class BookApiController extends Controller
             "title"         => $data["title"],
             "count_page"    => $data["count_page"],
             "annotation"    => $data["annotation"],
-            "picture"       => "https://lorempixel.com/50/50/people/?46307",
+            "picture"       => $data["picture"],
+            // "picture"       => "https://lorempixel.com/50/50/people/?46307",
             "author_id"     => $author->id,
         ]);
 
@@ -104,9 +104,9 @@ class BookApiController extends Controller
             "title"             =>  "required|string",
             "count_page"        =>  "required|numeric|min:1|max:150",
             "annotation"        =>  "required|string",
-            // "picture"        =>  "https://lorempixel.com/50/50/people/?46307",
-            "author_name"       =>  "required|string|min:2",
-            "author_lastname"   =>  "required|string|min:2",
+            "picture"           =>  "required|string",
+            // "author_name"       =>  "required|string|min:2",
+            // "author_lastname"   =>  "required|string|min:2",
         ]);
 
         if ($validator->fails()) {
@@ -129,7 +129,7 @@ class BookApiController extends Controller
                 "title"         => $data["title"],
                 "count_page"    => $data["count_page"],
                 "annotation"    => $data["annotation"],
-                "picture"       => "https://lorempixel.com/50/50/people/?46307",
+                "picture"       => $data["picture"],
             ]);
 
             return response()->json(["updated_book" => $updateBook], 200);

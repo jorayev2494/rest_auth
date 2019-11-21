@@ -11,17 +11,13 @@ class LoginApiController extends Controller
     {
         $data = $request->only("email", "password");
 
-        try {
-            $token = auth()->attempt($data);
+        $token = auth()->attempt($data);
 
-            $login = [
-                "my"        => auth()->userOrFail(),
-                "token"     => $token,
-            ];
-            
-        } catch (\Tymon\JwtAuth\Exceptions\UserNotDefinedException $exc) {
-            return response()->json(["error" => $exc->getMessage()], 401);
-        }
+        $login = [
+            "my"        => $this->authUser(),
+            "token"     => $token,
+        ];          
+        
 
         return response()->json(["login" => $login], 200);
 
