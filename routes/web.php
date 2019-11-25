@@ -15,4 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// This is Brans: Master
+<<<<<<< HEAD
+// This is Brans: Master : This is Branch:TEST_BRANS
+=======
+// This is Branch:TEST_BRANS
+>>>>>>> test_brans

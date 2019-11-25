@@ -3,7 +3,7 @@
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Database\Seeder;
-
+ 
 class UsersTableSeeder extends Seeder
 {
     /**
